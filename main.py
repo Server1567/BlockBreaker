@@ -108,6 +108,7 @@ def main():
     pygame.display.set_caption("BlockBreaker")
 
     bola = Bola()
+    global player
     player = Player()
  
     clock = pygame.time.Clock()
