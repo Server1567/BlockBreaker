@@ -34,8 +34,6 @@ class Bola(pygame.sprite.Sprite):
             self.rect.centerx += self.speed[0] * time
         
         if self.rect.top <= 0 or self.rect.bottom >= HEIGHT or self.rect.colliderect(player.rect):
-            # ¿Cómo uso player.rect sin antes haberlo declarado?
-            # ¿Hay una menera hacerlo?
             self.speed[1] = -self.speed[1]
             self.rect.centery += self.speed[1] * time
 
