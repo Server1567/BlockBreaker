@@ -7,6 +7,7 @@ import sys
 from pygame.locals import *
  
 # Constantes o Variables
+color = (234,234,234)
 WIDTH = 850
 HEIGHT = 480
 window = pygame.display.set_mode((WIDTH,HEIGHT))
@@ -18,8 +19,8 @@ class Bola(pygame.sprite.Sprite):
     """Comportamiento de la Bola"""
     def __init__(self):
         pygame.sprite.Sprite.__init__(self)
-        self.image = load_image("Imagenes/ball.png", True)
-        self.rect = self.image.get_rect()
+        self.image = load_image("Imagenes/ball.png", True) # Ignored
+        self.rect = self.image.get_rect()                  # Ignored
         self.centerx = WIDTH / 2
         self.centery = HEIGHT / 2
         self.speed = [0.2, -0.2]
@@ -79,7 +80,19 @@ class Player(pygame.sprite.Sprite):
     def dibujar(self):
         window.blit(self.image, self.rect)
 
+# ---------------------------------------------------------------------
 
+class Block(pygame.sprite.Sprite):
+    """Comportamiento de los Bloques"""
+    def __init__(self, posX, posY, distancia):
+        pygame.sprite.Sprite.__init__(self)
+        self.lista_de_bloques = []
+        
+    def destruction(self):
+        pass
+
+    def dibujar(self, posX, posY):
+        pygame.draw.rect(window,color,(posX,posY,75,20))
 
 # ---------------------------------------------------------------------
  
@@ -96,6 +109,12 @@ def load_image(filename, transparent=False):
                 image.set_colorkey(color, RLEACCEL)
         return image
 
+def cargar_bloques(self):
+    for x in range(1,5):
+        block = Block(20,165,50)
+        lista_de_bloques.append(block)
+        posY = posY + 200
+
 
 # --------------------------------------------------------------------- 
  
@@ -105,16 +124,20 @@ def main():
     window = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("BlockBreaker")
 
+    # Objetos principales
     bola = Bola()
     global player
     player = Player()
+
+    # Objetos Block's
+    cargar_bloques()
  
     clock = pygame.time.Clock()
 
     velocidad = 10
  
     while True:
-        window.fill((0,0,0))
+        window.fill((90,90,90))
         time = clock.tick(60)
         
         for event in pygame.event.get():
@@ -147,7 +170,7 @@ def main():
         bola.dibujar()
         player.actualizar()
         player.dibujar()
-    
+
     	pygame.display.update()
  
 main()
