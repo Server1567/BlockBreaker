@@ -124,6 +124,9 @@ def main():
     window = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("BlockBreaker")
 
+    icon = pygame.image.load("Imagenes/ball.png")
+    pygame.display.set_icon(icon)
+
     # Objetos principales
     bola = Bola()
     global player
