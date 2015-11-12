@@ -11,6 +11,7 @@ color = (234,234,234)
 WIDTH = 850
 HEIGHT = 480
 window = pygame.display.set_mode((WIDTH,HEIGHT))
+lista_de_bloques = []
  
 # Clases
 # ---------------------------------------------------------------------
@@ -109,7 +110,8 @@ def load_image(filename, transparent=False):
                 image.set_colorkey(color, RLEACCEL)
         return image
 
-def cargar_bloques(self):
+def cargar_bloques():
+    posY = 100
     for x in range(1,5):
         block = Block(20,165,50)
         lista_de_bloques.append(block)
@@ -137,7 +139,6 @@ def main():
  
     clock = pygame.time.Clock()
 
-    velocidad = 10
  
     while True:
         window.fill((90,90,90))
