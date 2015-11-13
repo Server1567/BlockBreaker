@@ -11,7 +11,6 @@ color = (234,234,234)
 WIDTH = 850
 HEIGHT = 480
 window = pygame.display.set_mode((WIDTH,HEIGHT))
-lista_de_bloques = []
  
 # Clases
 # ---------------------------------------------------------------------
@@ -85,9 +84,9 @@ class Player(pygame.sprite.Sprite):
 
 class Block(pygame.sprite.Sprite):
     """Comportamiento de los Bloques"""
-    def __init__(self, posX, posY, distancia):
+    def __init__(self, posX, posY):
         pygame.sprite.Sprite.__init__(self)
-        self.lista_de_bloques = []
+        
         
     def destruction(self):
         pass
@@ -110,13 +109,6 @@ def load_image(filename, transparent=False):
                 image.set_colorkey(color, RLEACCEL)
         return image
 
-def cargar_bloques():
-    posY = 100
-    for x in range(1,5):
-        block = Block(20,165,50)
-        lista_de_bloques.append(block)
-        posY = posY + 200
-
 
 # --------------------------------------------------------------------- 
  
@@ -134,8 +126,36 @@ def main():
     global player
     player = Player()
 
-    # Objetos Block's
-    cargar_bloques()
+# ---------------------------------------------------------------------
+ 
+# Creación de Bloques | START
+# ---------------------------------------------------------------------
+
+    block1A = Block(20,165)
+    block2A = Block(100,165)
+    block3A = Block(180,165)
+    block4A = Block(260,165)
+    block5A = Block(340,165)
+    block6A = Block(420,165)
+    block7A = Block(500,165)
+    block8A = Block(580,165)
+    block9A = Block(660,165)
+    block10A = Block(740,165)
+
+    block1B = Block(100,135)
+    block2B = Block(180,135)
+    block3B = Block(260,135)
+    block4B = Block(340,135)
+    block5B = Block(420,135)
+    block6B = Block(500,135)
+    block7B = Block(580,135)
+    block8B = Block(660,135)
+
+# ---------------------------------------------------------------------
+ 
+# Creación de Bloques | END
+# ---------------------------------------------------------------------
+
  
     clock = pygame.time.Clock()
 
@@ -174,6 +194,37 @@ def main():
         bola.dibujar()
         player.actualizar()
         player.dibujar()
+
+
+# ---------------------------------------------------------------------
+ 
+# Renderización de Bloques | START
+# ---------------------------------------------------------------------
+
+        block1A.dibujar(20,165)
+        block2A.dibujar(100,165)
+        block3A.dibujar(180,165)
+        block4A.dibujar(260,165)
+        block5A.dibujar(340,165)
+        block6A.dibujar(420,165)
+        block7A.dibujar(500,165)
+        block8A.dibujar(580,165)
+        block9A.dibujar(660,165)
+        block10A.dibujar(740,165)
+
+        block1B.dibujar(100,135)
+        block2B.dibujar(180,135)
+        block3B.dibujar(260,135)
+        block4B.dibujar(340,135)
+        block5B.dibujar(420,135)
+        block6B.dibujar(500,135)
+        block7B.dibujar(580,135)
+        block8B.dibujar(660,135)
+
+# ---------------------------------------------------------------------
+ 
+# Renderización de Bloques | END
+# ---------------------------------------------------------------------
 
     	pygame.display.update()
  
