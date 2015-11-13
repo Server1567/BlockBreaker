@@ -86,6 +86,10 @@ class Block(pygame.sprite.Sprite):
     """Comportamiento de los Bloques"""
     def __init__(self, posX, posY):
         pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.image.load("Imagenes/ball.png")
+        self.rect = self.image.get_rect()
+        self.centerx = WIDTH / 2
+        self.centery = HEIGHT / 2
         
         
     def destruction(self):
