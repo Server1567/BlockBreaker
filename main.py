@@ -156,6 +156,9 @@ def main():
 # Creación de Bloques | END
 # ---------------------------------------------------------------------
 
+"""Tuve problemas al crear un Bucle que iterara los bloques para crear más rapido,
+ así que lo hize de modo rudo. xD"""
+
  
     clock = pygame.time.Clock()
 
