@@ -151,13 +151,27 @@ def main():
     block7B = Block(580,135)
     block8B = Block(660,135)
 
+    block1C = Block(180,105)
+    block2C = Block(260,105)
+    block3C = Block(340,105)
+    block4C = Block(420,105)
+    block5C = Block(500,105)
+    block6C = Block(580,105)
+
+    block1D = Block(260,75)
+    block2D = Block(340,75)
+    block3D = Block(420,75)
+    block4D = Block(500,75)
+
+    block1E = Block(340,45)
+    block2E = Block(420,45)
+
+    block1F = Block(380,15)
+
 # ---------------------------------------------------------------------
  
 # Creación de Bloques | END
 # ---------------------------------------------------------------------
-
-"""Tuve problemas al crear un Bucle que iterara los bloques para crear más rapido,
- así que lo hize de modo rudo. xD"""
 
  
     clock = pygame.time.Clock()
@@ -224,6 +238,23 @@ def main():
         block7B.dibujar(580,135)
         block8B.dibujar(660,135)
 
+        block1C.dibujar(180,105)
+        block2C.dibujar(260,105)
+        block3C.dibujar(340,105)
+        block4C.dibujar(420,105)
+        block5C.dibujar(500,105)
+        block6C.dibujar(580,105)
+
+        block1D.dibujar(260,75)
+        block2D.dibujar(340,75)
+        block3D.dibujar(420,75)
+        block4D.dibujar(500,75)
+
+        block1E.dibujar(340,45)
+        block2E.dibujar(420,45)
+
+        block1F.dibujar(380,15)
+
 # ---------------------------------------------------------------------
  
 # Renderización de Bloques | END
@@ -232,3 +263,7 @@ def main():
     	pygame.display.update()
  
 main()
+
+"""Tuve problemas al crear un Bucle que iterara los bloques para crear más rapido,
+ así que lo hize de modo rudo. xD
+ """
