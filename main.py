@@ -38,9 +38,9 @@ class Bola(pygame.sprite.Sprite):
             self.speed[1] = -self.speed[1]
             self.rect.centery += self.speed[1] * time
 
-        """if self.rect.colliderect(block1A.rect):
-                                    self.speed[1] = -self.speed[1]
-                                    self.rect += self.speed[1] * time"""
+    def destroy(self):
+        if self.rect.colliderect(block1A):
+            block1A.remove()
 
 
     def dibujar(self):
@@ -88,22 +88,21 @@ class Player(pygame.sprite.Sprite):
 
 class Block(pygame.sprite.Sprite):
     """Comportamiento de los Bloques"""
-    def __init__(self, posX, posY):
+    def __init__(self):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.image.load("Imagenes/ball.png")
         self.rect = self.image.get_rect()
         self.centerx = WIDTH / 2
         self.centery = HEIGHT / 2
-        
-        
-    def destruction(self):
-        if block.colliderect(bola.rect):
-            block.remove()
+        self.unbroken = True
+    
+    def __destroying(self):
+        pass
 
     def dibujar(self, posX, posY):
-        global block
-        block = pygame.draw.rect(window,color,(posX,posY,75,20))
-        return block
+        pygame.draw.rect(window,color,(posX,posY,75,20))
+        self.__destroying()
+
 
 # ---------------------------------------------------------------------
  
@@ -129,56 +128,69 @@ def main():
     window = pygame.display.set_mode((WIDTH, HEIGHT))
     pygame.display.set_caption("BlockBreaker")
 
-    icon = pygame.image.load("Imagenes/ball.png")
+    icon = pygame.image.load("Imagenes/ball.ico")
     pygame.display.set_icon(icon)
 
+
     # Objetos principales
+    global bola
     bola = Bola()
     global player
     player = Player()
+
 
 # ---------------------------------------------------------------------
  
 # Creación de Bloques | START
 # ---------------------------------------------------------------------
     
-    block1A = Block(20,165)
-    block1A.destruction()
-    block2A = Block(100,165)
-    block3A = Block(180,165)
-    block4A = Block(260,165)
-    block5A = Block(340,165)
-    block6A = Block(420,165)
-    block7A = Block(500,165)
-    block8A = Block(580,165)
-    block9A = Block(660,165)
-    block10A = Block(740,165)
+    block1A = Block()
+    block2A = Block()
+    block3A = Block()
+    block4A = Block()
+    block5A = Block()
+    block6A = Block()
+    block7A = Block()
+    block8A = Block()
+    block9A = Block()
+    block10A = Block()
 
-    block1B = Block(100,135)
-    block2B = Block(180,135)
-    block3B = Block(260,135)
-    block4B = Block(340,135)
-    block5B = Block(420,135)
-    block6B = Block(500,135)
-    block7B = Block(580,135)
-    block8B = Block(660,135)
+    block1B = Block()
+    block2B = Block()
+    block3B = Block()
+    block4B = Block()
+    block5B = Block()
+    block6B = Block()
+    block7B = Block()
+    block8B = Block()
 
-    block1C = Block(180,105)
-    block2C = Block(260,105)
-    block3C = Block(340,105)
-    block4C = Block(420,105)
-    block5C = Block(500,105)
-    block6C = Block(580,105)
+    block1C = Block()
+    block2C = Block()
+    block3C = Block()
+    block4C = Block()
+    block5C = Block()
+    block6C = Block()
 
-    block1D = Block(260,75)
-    block2D = Block(340,75)
-    block3D = Block(420,75)
-    block4D = Block(500,75)
+    block1D = Block()
+    block2D = Block()
+    block3D = Block()
+    block4D = Block()
 
-    block1E = Block(340,45)
-    block2E = Block(420,45)
+    block1E = Block()
+    block2E = Block()
 
-    block1F = Block(380,15)
+    block1F = Block()
+
+    blocks = [block1A, block2A, block3A, block4A, block5A, block6A, block7A, block8A, block9A,block10A,
+              block1B, block2B, block3B, block4B, block5B, block6B, block7B, block8B,
+              block1C, block2C, block3C, block4C, block5C, block6C,
+              block1D, block2D, block3D, block4D,
+              block1E, block2E,
+              block1F]
+
+    blocks[0].remove()
+
+
 
 # ---------------------------------------------------------------------
  
@@ -230,48 +242,48 @@ def main():
 # Renderización de Bloques | START
 # ---------------------------------------------------------------------
 
-        block1A.dibujar(20,165)
-        block2A.dibujar(100,165)
-        block3A.dibujar(180,165)
-        block4A.dibujar(260,165)
-        block5A.dibujar(340,165)
-        block6A.dibujar(420,165)
-        block7A.dibujar(500,165)
-        block8A.dibujar(580,165)
-        block9A.dibujar(660,165)
-        block10A.dibujar(740,165)
+        blocks[0].dibujar(20,165)
+        blocks[1].dibujar(100,165)
+        blocks[2].dibujar(180,165)
+        blocks[3].dibujar(260,165)
+        blocks[4].dibujar(340,165)
+        blocks[5].dibujar(420,165)
+        blocks[6].dibujar(500,165)
+        blocks[7].dibujar(580,165)
+        blocks[8].dibujar(660,165)
+        blocks[9].dibujar(740,165)
 
-        block1B.dibujar(100,135)
-        block2B.dibujar(180,135)
-        block3B.dibujar(260,135)
-        block4B.dibujar(340,135)
-        block5B.dibujar(420,135)
-        block6B.dibujar(500,135)
-        block7B.dibujar(580,135)
-        block8B.dibujar(660,135)
+        blocks[10].dibujar(100,135)
+        blocks[11].dibujar(180,135)
+        blocks[12].dibujar(260,135)
+        blocks[13].dibujar(340,135)
+        blocks[14].dibujar(420,135)
+        blocks[15].dibujar(500,135)
+        blocks[16].dibujar(580,135)
+        blocks[17].dibujar(660,135)
 
-        block1C.dibujar(180,105)
-        block2C.dibujar(260,105)
-        block3C.dibujar(340,105)
-        block4C.dibujar(420,105)
-        block5C.dibujar(500,105)
-        block6C.dibujar(580,105)
+        blocks[18].dibujar(180,105)
+        blocks[19].dibujar(260,105)
+        blocks[20].dibujar(340,105)
+        blocks[21].dibujar(420,105)
+        blocks[22].dibujar(500,105)
+        blocks[23].dibujar(580,105)
 
-        block1D.dibujar(260,75)
-        block2D.dibujar(340,75)
-        block3D.dibujar(420,75)
-        block4D.dibujar(500,75)
+        blocks[24].dibujar(260,75)
+        blocks[25].dibujar(340,75)
+        blocks[26].dibujar(420,75)
+        blocks[27].dibujar(500,75)
 
-        block1E.dibujar(340,45)
-        block2E.dibujar(420,45)
+        blocks[28].dibujar(340,45)
+        blocks[29].dibujar(420,45)
 
-        block1F.dibujar(380,15)
+        blocks[30].dibujar(380,15)
 
 # ---------------------------------------------------------------------
  
 # Renderización de Bloques | END
 # ---------------------------------------------------------------------
-
+    
     	pygame.display.update()
  
 main()
