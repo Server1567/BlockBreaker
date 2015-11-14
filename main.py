@@ -21,26 +21,26 @@ class Bola(pygame.sprite.Sprite):
         pygame.sprite.Sprite.__init__(self)
         self.image = load_image("Imagenes/ball.png", True) # Ignored
         self.rect = self.image.get_rect()                  # Ignored
-        self.centerx = WIDTH / 2
-        self.centery = HEIGHT / 2
+        self.posX = 425
+        self.posY = 450
         self.speed = [0.2, -0.2]
  
 
     def movimiento(self, time):
-        self.rect.centerx += self.speed[0] * time
-        self.rect.centery += self.speed[1] * time
+        self.posX += self.speed[0] * time
+        self.posY += self.speed[1] * time
 
         if self.rect.left <= 0 or self.rect.right >= WIDTH:
             self.speed[0] = -self.speed[0]
-            self.rect.centerx += self.speed[0] * time
+            self.posX += self.speed[0] * time
         
         if self.rect.top <= 0 or self.rect.bottom >= HEIGHT or self.rect.colliderect(player.rect):
             self.speed[1] = -self.speed[1]
-            self.rect.centery += self.speed[1] * time
+            self.posY += self.speed[1] * time
 
 
-    def dibujar(self):
-        pygame.draw.circle(window,(255,255,255),(self.rect.centerx, self.rect.centery),8)
+    def dibujar(self, posX, posY):
+        pygame.draw.circle(window,(255,255,255),(posX, posY),8)
 
 
 # ---------------------------------------------------------------------
@@ -93,7 +93,8 @@ class Block(pygame.sprite.Sprite):
         
         
     def destruction(self):
-        pass
+        if self.rect.left.colliderect(bola.rect):
+            self.rect.remove()
 
     def dibujar(self, posX, posY):
         pygame.draw.rect(window,color,(posX,posY,75,20))
@@ -212,7 +213,7 @@ def main():
 
  
         bola.movimiento(time)
-        bola.dibujar()
+        bola.dibujar(425, 450)
         player.actualizar()
         player.dibujar()
 
