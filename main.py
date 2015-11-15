@@ -11,6 +11,12 @@ color = (234,234,234)
 WIDTH = 850
 HEIGHT = 480
 window = pygame.display.set_mode((WIDTH,HEIGHT))
+lista_de_BloquesA = []
+lista_de_BloquesB = []
+lista_de_BloquesC = []
+lista_de_BloquesD = []
+lista_de_BloquesE = []
+lista_de_BloquesF = []
 
 # ---------------------------------------------------------------------
  
@@ -41,8 +47,8 @@ class Bola(pygame.sprite.Sprite):
             self.rect.centery += self.speed[1] * time
 
     def destroy(self):
-        if self.rect.colliderect(block1A):
-            block1A.remove()
+        if self.rect.colliderect(blocks[0].rect):
+            blocks[0].remove()
 
 
     def dibujar(self):
@@ -90,20 +96,20 @@ class Player(pygame.sprite.Sprite):
 
 class Block(pygame.sprite.Sprite):
     """Comportamiento de los Bloques"""
-    def __init__(self):
+    def __init__(self, posX, posY, distance):
         pygame.sprite.Sprite.__init__(self)
-        self.image = pygame.image.load("Imagenes/ball.png")
-        self.rect = self.image.get_rect()
-        self.centerx = WIDTH / 2
-        self.centery = HEIGHT / 2
+        self.image = pygame.image.load("Imagenes/ball.png") # Ignored
+        self.rect = self.image.get_rect()                   # Ignored
+        self.centerx = posX
+        self.centery = posY
         self.unbroken = True
+        self.posImagen = 0
     
     def __destroying(self):
         pass
 
-    def dibujar(self, posX, posY):
-        pygame.draw.rect(window,color,(posX,posY,75,20))
-        self.__destroying()
+    def dibujar(self):
+        self.block = pygame.draw.rect(window,color,(self.centerx,self.centery,75,20))
 
 
 # ---------------------------------------------------------------------
@@ -114,13 +120,49 @@ class Block(pygame.sprite.Sprite):
 def load_image(filename, transparent=False):
         try: image = pygame.image.load(filename)
         except pygame.error, message:
-                raise SystemExit, message
+                raise SystemExit, messageo
         image = image.convert()
         if transparent:
                 color = image.get_at((0,0))
                 image.set_colorkey(color, RLEACCEL)
         return image
 
+def cargarBloques():
+    posX = 20
+    for x in range(1,11):
+        block = Block(posX,165,80)
+        lista_de_BloquesA.append(block)
+        posX = posX + 80
+
+    posX = 100
+    for x in range(1,9):
+        block = Block(posX,135,80)
+        lista_de_BloquesB.append(block)
+        posX = posX + 80
+
+    posX = 180
+    for x in range(1,7):
+        block = Block(posX,105,80)
+        lista_de_BloquesC.append(block)
+        posX = posX + 80
+
+    posX = 260
+    for x in range(1,5):
+        block = Block(posX,75,80)
+        lista_de_BloquesD.append(block)
+        posX = posX + 80
+
+    posX = 340
+    for x in range(1,3):
+        block = Block(posX,45,80)
+        lista_de_BloquesE.append(block)
+        posX = posX + 80
+
+    posX = 380
+    for x in range(1,2):
+        block = Block(posX,15,80)
+        lista_de_BloquesF.append(block)
+        posX = posX + 80
 
 # --------------------------------------------------------------------- 
  
@@ -140,65 +182,7 @@ def main():
     global player
     player = Player()
 
-
-# ---------------------------------------------------------------------
- 
-# Creación de Bloques | START
-# ---------------------------------------------------------------------
-    
-    block1A = Block()
-    block2A = Block()
-    block3A = Block()
-    block4A = Block()
-    block5A = Block()
-    block6A = Block()
-    block7A = Block()
-    block8A = Block()
-    block9A = Block()
-    block10A = Block()
-
-    block1B = Block()
-    block2B = Block()
-    block3B = Block()
-    block4B = Block()
-    block5B = Block()
-    block6B = Block()
-    block7B = Block()
-    block8B = Block()
-
-    block1C = Block()
-    block2C = Block()
-    block3C = Block()
-    block4C = Block()
-    block5C = Block()
-    block6C = Block()
-
-    block1D = Block()
-    block2D = Block()
-    block3D = Block()
-    block4D = Block()
-
-    block1E = Block()
-    block2E = Block()
-
-    block1F = Block()
-
-    blocks = [block1A, block2A, block3A, block4A, block5A, block6A, block7A, block8A, block9A,block10A,
-              block1B, block2B, block3B, block4B, block5B, block6B, block7B, block8B,
-              block1C, block2C, block3C, block4C, block5C, block6C,
-              block1D, block2D, block3D, block4D,
-              block1E, block2E,
-              block1F]
-
-    blocks[0].remove()
-
-
-
-# ---------------------------------------------------------------------
- 
-# Creación de Bloques | END
-# ---------------------------------------------------------------------
-
+    cargarBloques()
  
     clock = pygame.time.Clock()
 
@@ -244,42 +228,43 @@ def main():
 # Renderización de Bloques | START
 # ---------------------------------------------------------------------
 
-        blocks[0].dibujar(20,165)
-        blocks[1].dibujar(100,165)
-        blocks[2].dibujar(180,165)
-        blocks[3].dibujar(260,165)
-        blocks[4].dibujar(340,165)
-        blocks[5].dibujar(420,165)
-        blocks[6].dibujar(500,165)
-        blocks[7].dibujar(580,165)
-        blocks[8].dibujar(660,165)
-        blocks[9].dibujar(740,165)
+        lista_de_BloquesA[0].dibujar()
+        lista_de_BloquesA[1].dibujar()
+        lista_de_BloquesA[2].dibujar()
+        lista_de_BloquesA[3].dibujar()
+        lista_de_BloquesA[4].dibujar()
+        lista_de_BloquesA[5].dibujar()
+        lista_de_BloquesA[6].dibujar()
+        lista_de_BloquesA[7].dibujar()
+        lista_de_BloquesA[8].dibujar()
+        lista_de_BloquesA[9].dibujar()
 
-        blocks[10].dibujar(100,135)
-        blocks[11].dibujar(180,135)
-        blocks[12].dibujar(260,135)
-        blocks[13].dibujar(340,135)
-        blocks[14].dibujar(420,135)
-        blocks[15].dibujar(500,135)
-        blocks[16].dibujar(580,135)
-        blocks[17].dibujar(660,135)
+        lista_de_BloquesB[0].dibujar()
+        lista_de_BloquesB[1].dibujar()
+        lista_de_BloquesB[2].dibujar()
+        lista_de_BloquesB[3].dibujar()
+        lista_de_BloquesB[4].dibujar()
+        lista_de_BloquesB[5].dibujar()
+        lista_de_BloquesB[6].dibujar()
+        lista_de_BloquesB[7].dibujar()
 
-        blocks[18].dibujar(180,105)
-        blocks[19].dibujar(260,105)
-        blocks[20].dibujar(340,105)
-        blocks[21].dibujar(420,105)
-        blocks[22].dibujar(500,105)
-        blocks[23].dibujar(580,105)
+        lista_de_BloquesC[0].dibujar()
+        lista_de_BloquesC[1].dibujar()
+        lista_de_BloquesC[2].dibujar()
+        lista_de_BloquesC[3].dibujar()
+        lista_de_BloquesC[4].dibujar()
+        lista_de_BloquesC[5].dibujar()
 
-        blocks[24].dibujar(260,75)
-        blocks[25].dibujar(340,75)
-        blocks[26].dibujar(420,75)
-        blocks[27].dibujar(500,75)
+        lista_de_BloquesD[0].dibujar()
+        lista_de_BloquesD[1].dibujar()
+        lista_de_BloquesD[2].dibujar()
+        lista_de_BloquesD[3].dibujar()
 
-        blocks[28].dibujar(340,45)
-        blocks[29].dibujar(420,45)
+        lista_de_BloquesE[0].dibujar()
+        lista_de_BloquesE[1].dibujar()
 
-        blocks[30].dibujar(380,15)
+        lista_de_BloquesF[0].dibujar()
+
 
 # ---------------------------------------------------------------------
  
