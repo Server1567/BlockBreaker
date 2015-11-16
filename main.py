@@ -47,8 +47,8 @@ class Bola(pygame.sprite.Sprite):
             self.rect.centery += self.speed[1] * time
 
     def destroy(self):
-        if self.rect.colliderect(blocks[0].rect):
-            blocks[0].remove()
+        if self.rect.colliderect(block.rect):
+            block.remove()
 
 
     def dibujar(self):
@@ -102,8 +102,7 @@ class Block(pygame.sprite.Sprite):
         self.rect = self.image.get_rect()                   # Ignored
         self.centerx = posX
         self.centery = posY
-        self.unbroken = True
-        self.posImagen = 0
+        self.unbroken = True                                # Ignored
     
     def __destroying(self):
         pass
@@ -120,7 +119,7 @@ class Block(pygame.sprite.Sprite):
 def load_image(filename, transparent=False):
         try: image = pygame.image.load(filename)
         except pygame.error, message:
-                raise SystemExit, messageo
+                raise SystemExit, message
         image = image.convert()
         if transparent:
                 color = image.get_at((0,0))
@@ -264,12 +263,14 @@ def main():
         lista_de_BloquesE[1].dibujar()
 
         lista_de_BloquesF[0].dibujar()
-
-
+        
 # ---------------------------------------------------------------------
  
 # Renderización de Bloques | END
 # ---------------------------------------------------------------------
+
+        if bola.rect.colliderect(block):
+            block.remove()
     
     	pygame.display.update()
  
