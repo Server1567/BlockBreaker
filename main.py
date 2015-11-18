@@ -42,13 +42,12 @@ class Bola(pygame.sprite.Sprite):
             self.speed[0] = -self.speed[0]
             self.rect.centerx += self.speed[0] * time
         
-        if self.rect.top <= 0 or self.rect.bottom >= HEIGHT or self.rect.colliderect(player.rect):
+        if self.rect.top <= 0 or self.rect.bottom >= HEIGHT or self.rect.colliderect(player.rect) or self.rect.colliderect(block.rect):
             self.speed[1] = -self.speed[1]
             self.rect.centery += self.speed[1] * time
 
     def destroy(self):
-        if self.rect.colliderect(block.rect):
-            block.remove()
+        pass
 
 
     def dibujar(self):
@@ -129,6 +128,7 @@ def load_image(filename, transparent=False):
 def cargarBloques():
     posX = 20
     for x in range(1,11):
+        global block
         block = Block(posX,165,80)
         lista_de_BloquesA.append(block)
         posX = posX + 80
@@ -182,7 +182,7 @@ def main():
     player = Player()
 
     cargarBloques()
- 
+
     clock = pygame.time.Clock()
 
  
@@ -215,6 +215,8 @@ def main():
 
 
 
+            
+
  
         bola.movimiento(time)
         bola.dibujar()
@@ -226,7 +228,6 @@ def main():
  
 # Renderización de Bloques | START
 # ---------------------------------------------------------------------
-
         lista_de_BloquesA[0].dibujar()
         lista_de_BloquesA[1].dibujar()
         lista_de_BloquesA[2].dibujar()
@@ -268,8 +269,8 @@ def main():
  
 # Renderización de Bloques | END
 # ---------------------------------------------------------------------
-
-        if bola.rect.colliderect(block):
+        
+        for block in pygame.sprite.spritecollide(bola, block, 1):
             block.remove()
     
     	pygame.display.update()
