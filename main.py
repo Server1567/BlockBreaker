@@ -270,8 +270,7 @@ def main():
 # Renderización de Bloques | END
 # ---------------------------------------------------------------------
         
-        for block in pygame.sprite.spritecollide(bola, block, 1):
-            block.remove()
+        
     
     	pygame.display.update()
  
