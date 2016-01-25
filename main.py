@@ -190,6 +190,7 @@ def main():
         window.fill((90,90,90))
         time = clock.tick(60)
         
+        # Eventos de teclado
         for event in pygame.event.get():
             if event.type == QUIT:
             	pygame.quit()
@@ -228,42 +229,23 @@ def main():
  
 # Renderización de Bloques | START
 # ---------------------------------------------------------------------
-        lista_de_BloquesA[0].dibujar()
-        lista_de_BloquesA[1].dibujar()
-        lista_de_BloquesA[2].dibujar()
-        lista_de_BloquesA[3].dibujar()
-        lista_de_BloquesA[4].dibujar()
-        lista_de_BloquesA[5].dibujar()
-        lista_de_BloquesA[6].dibujar()
-        lista_de_BloquesA[7].dibujar()
-        lista_de_BloquesA[8].dibujar()
-        lista_de_BloquesA[9].dibujar()
+        for i in lista_de_BloquesA:
+            i.dibujar()
+        
+        for i in lista_de_BloquesB:
+            i.dibujar()
 
-        lista_de_BloquesB[0].dibujar()
-        lista_de_BloquesB[1].dibujar()
-        lista_de_BloquesB[2].dibujar()
-        lista_de_BloquesB[3].dibujar()
-        lista_de_BloquesB[4].dibujar()
-        lista_de_BloquesB[5].dibujar()
-        lista_de_BloquesB[6].dibujar()
-        lista_de_BloquesB[7].dibujar()
+        for i in lista_de_BloquesC:
+            i.dibujar()
 
-        lista_de_BloquesC[0].dibujar()
-        lista_de_BloquesC[1].dibujar()
-        lista_de_BloquesC[2].dibujar()
-        lista_de_BloquesC[3].dibujar()
-        lista_de_BloquesC[4].dibujar()
-        lista_de_BloquesC[5].dibujar()
+        for i in lista_de_BloquesD:
+            i.dibujar()
 
-        lista_de_BloquesD[0].dibujar()
-        lista_de_BloquesD[1].dibujar()
-        lista_de_BloquesD[2].dibujar()
-        lista_de_BloquesD[3].dibujar()
+        for i in lista_de_BloquesE:
+            i.dibujar()
 
-        lista_de_BloquesE[0].dibujar()
-        lista_de_BloquesE[1].dibujar()
-
-        lista_de_BloquesF[0].dibujar()
+        for i in lista_de_BloquesF:
+            i.dibujar()
         
 # ---------------------------------------------------------------------
  
@@ -273,9 +255,5 @@ def main():
         
     
     	pygame.display.update()
- 
-main()
 
-"""Tuve problemas al crear un Bucle que iterara los bloques para crear más rapido,
- así que lo hize de modo rudo. xD
- """
+main()
